@@ -4,9 +4,18 @@ import re
 import html as html_module
 import requests
 from bs4 import BeautifulSoup
-from fastapi import FastAPI, Query, HTTPException
+from fastapi import FastAPI, Query, HTTPException, CORSMiddleware
 
 app = FastAPI(title="StreamPicker API")
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 BASE_URL = "https://multicanaishd.deals/futebol/"
 GAME_URL_RE = re.compile(r"assistir-.+-x-.+ao-vivo", re.IGNORECASE)
