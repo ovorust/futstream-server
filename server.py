@@ -4,14 +4,17 @@ import re
 import html as html_module
 import requests
 from bs4 import BeautifulSoup
-from fastapi import FastAPI, Query, HTTPException, CORSMiddleware
+from fastapi import FastAPI, Query, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="StreamPicker API")
 
 
+app = FastAPI()
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["*"],  # libera geral (teste)
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
